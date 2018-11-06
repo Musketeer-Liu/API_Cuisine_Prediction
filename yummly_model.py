@@ -127,20 +127,33 @@ print('\n')
 
 
 
-# Load Dataset into 3 Parts ((Train-Valid)-Test)
+# # Load Smaller Dataset for faster Debugging into 3 Parts ((Train-Valid)-Final)
+# print('Working on Smaller Dataset for Quick Debugging: ')
+# print('Loading Train Dataset ==> ', end="")
+# dataset_train = pd.read_csv('yummly_dataset.csv', header=0, nrows=300, low_memory=False)
+# print('Loaded! ==> ', end="")
+
+# print('Loading Valid Dataset ==> ', end="")
+# dataset_valid = pd.read_csv('yummly_dataset.csv', header=0, skiprows=300, nrows=90)
+# print('Loaded! ==> ', end="")
+
+# print('Loading Final Dataset ==> ', end="")
+# dataset_final = pd.read_csv('yummly_dataset.csv', header=0, skiprows=390, nrows=10)
+# print('Loaded!')
+
+
+# Load Whole Dataset for Real Prediction into 3 Parts ((Train-Valid)-Final)
+print('Working on Whole Dataset for Real Prediction: ')
 print('Loading Train Dataset ==> ', end="")
-# dataset_train = pd.read_csv('yummly_dataset.csv', header=0, nrows=30000, low_memory=False)
-dataset_train = pd.read_csv('yummly_dataset.csv', header=0, nrows=300, low_memory=False)
+dataset_train = pd.read_csv('yummly_dataset.csv', header=0, nrows=30000, low_memory=False)
 print('Loaded! ==> ', end="")
 
 print('Loading Valid Dataset ==> ', end="")
-# dataset_valid = pd.read_csv('yummly_dataset.csv', header=0, skiprows=30000, nrows=9000)
-dataset_valid = pd.read_csv('yummly_dataset.csv', header=0, skiprows=300, nrows=90)
+dataset_valid = pd.read_csv('yummly_dataset.csv', header=0, skiprows=30000, nrows=9000)
 print('Loaded! ==> ', end="")
 
 print('Loading Final Dataset ==> ', end="")
-# dataset_final = pd.read_csv('yummly_dataset.csv', header=0, skiprows=39000)
-dataset_final = pd.read_csv('yummly_dataset.csv', header=0, skiprows=390, nrows=10)
+dataset_final = pd.read_csv('yummly_dataset.csv', header=0, skiprows=39000)
 print('Loaded!')
 
 
@@ -193,8 +206,19 @@ print('\n')
 
 
 
-# Print out Prediction 
-print('Predict with this Model ==> ', end="")
+# Print out Model Alignment/Prediction
+# # Tuning Model with Valide Dataset
+# print('Model Alignment with Valid Dataset ==> ', end="")
+# predict_log = model_log.predict(X_valid)
+# predict_rfc = model_rfc.predict(X_valid)
+# predict_bnb = model_bnb.predict(X_valid)
+# true_value = y_valid.tolist()
+# print('Alignment Finished!')
+# print('\n')
+
+
+# Last Prediction with Final Dataset
+print('Model Prediction on Final Dataset ==> ', end="")
 predict_log = model_log.predict(X_final)
 predict_rfc = model_rfc.predict(X_final)
 predict_bnb = model_bnb.predict(X_final)
